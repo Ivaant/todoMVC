@@ -86,48 +86,32 @@ const handlers = {
     }
     view.displayTodos();
   },
-  deleteTodo: function (event) {
-    const position = event.target.parentNode.id;
+  deleteTodo: function () {
+    const PositionInput = document.querySelector("#deleteTodoPositionInput");
+    const position = +PositionInput.value;
     if (position != null) {
       todos.deleteTodo(position);
+      PositionInput.value = null;
     }
     view.displayTodos();
   }
 };
 
 const view = {
-  displayTodos: function () {
-    const ulElem = document.querySelector("#display");
-    while (ulElem.lastChild) {
+  displayTodos: function() {
+    const ulElem = document.querySelector("ul");
+    while(ulElem.lastChild) {
       ulElem.removeChild(ulElem.lastChild);
     }
-    todos.list.forEach((elem, index) => {
+    for (let elem of todos.list) {
       const liElem = document.createElement("li");
-      liElem.className = "display-row";
-      liElem.id = index;
       let displayText = elem.todoText;
 
       if (elem.completed) displayText = "(x)" + displayText;
       else displayText = "( )" + displayText;
-      const textElem = this.createTextElem(displayText);
-      const delButElem = this.createDelButton();
 
-      liElem.appendChild(textElem)
-      liElem.appendChild(delButElem);
+      liElem.textContent = displayText;
       ulElem.appendChild(liElem);
-    });
-  },
-  createTextElem: function (text) {
-    const textElem = document.createElement("p");
-    textElem.textContent = text;
-    textElem.className = "display-cell";
-    return textElem;
-  },
-  createDelButton: function () {
-    const delButElem = document.createElement("button");
-    delButElem.textContent = "Delete";
-    delButElem.className = "small";
-    delButElem.onclick = handlers.deleteTodo;
-    return delButElem;
+    }
   }
 }

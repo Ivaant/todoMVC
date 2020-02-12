@@ -47,6 +47,20 @@ button:active {
   background: #666;
 }
 
+ .small {
+  border: none;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #214F37;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 300;
+  background: linear-gradient(#5AD796, #45A372);
+  box-shadow: 2px 2px 3px #666;
+  outline: none;
+ }
+
 input {
   border: inset;
   margin: 20px;
@@ -68,4 +82,32 @@ input[type="number"] {
 
 input:focus {
   box-shadow: 5px 5px 5px #666;
+}
+
+#display {
+  display: table;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: linear-gradient( #cae2c4, 80%,  #17a082);
+  box-shadow: 2px 2px 3px #666;
+}
+
+.display-row {
+  display: table-row;
+  border: inset;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #214F37;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
+  box-shadow: 2px 2px 3px #666;
+}
+
+.display-cell {
+  display: table-cell;
+  padding: 10px;
 }
