@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient( #cae2c4, #17a082);
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: #394F44;
+  text-shadow: 0 2px #9FDDBD;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+button {
+  border: none;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #214F37;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(#5AD796, #45A372);
+  box-shadow: 2px 2px 3px #666;
+  outline: none;
+}
+
+button:hover {
+  box-shadow: 5px 5px 5px #666;
+  color: #9FDDBD;
+}
+
+button:active {
+  color: #5AD796;
+  background: #666;
+}
+
+input {
+  border: inset;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #214F37;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
+  box-shadow: 2px 2px 3px #666;
+  outline: none;
+}
+
+input[type="number"] {
+  width: 1em;
+  padding: 10px;
+}
+
+input:focus {
+  box-shadow: 5px 5px 5px #666;
+}
