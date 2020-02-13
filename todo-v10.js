@@ -242,10 +242,6 @@ const view = {
 //test
 todos.addTodo("Make hoework");
 todos.addTodo("Learn JS");
-todos.addTodo("Have a rest");
+todos.addTodo("Make grocery shopping");
 todos.updateTodo("Make homework properly", 0);
 todos.toggleCompleted(1);
-
-for (let i = 0; i < 10; i++) {
-  todos.addTodo("New task " + i);
-}

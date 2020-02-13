@@ -207,3 +207,21 @@ header h1 {
 #clear-completed:hover {
   text-decoration: underline;
 }
+
+#after-footer {
+  max-width: 500px;
+  margin: 100px auto 10px auto;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  color: #a1a1a1;
+}
+
+#after-footer a {
+  color: #a1a1a1;
+  text-decoration: none;
+}
+
+#after-footer a:hover {
+  text-decoration: underline;
+}
