@@ -8,7 +8,7 @@
 font-family: 'Montserrat', sans-serif; */
 
 body {
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
   background: linear-gradient(#A0DEBE, #7BAB92, #285E42);
   font-family: 'Roboto', sans-serif;
   color: #445E51;
@@ -23,7 +23,7 @@ body {
 
 header.wrapper {
   position: relative;
-  margin-top: 10px;
+  margin-top: 50px;
   background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
 }
 
@@ -112,6 +112,7 @@ header h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: regular 400;
   font-size: 1.5rem;
+  color: #445E51;
   outline: none;
 }
 
@@ -124,10 +125,10 @@ header h1 {
 .del-but {
   display: none;
   position: absolute;
-  top: 40%;
+  top: 35%;
   right: 10px;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   margin: auto 0;
   font-size: 1.5rem;
   color: #285E42;
@@ -172,7 +173,7 @@ header h1 {
   border: 1px solid transparent;
   border-radius: 3px;
   font-size: 0.8rem;
-  color: #445E51;
+  color: #5AD796;
   background: linear-gradient(#e1e1e1, #A0DEBE);
   box-shadow: 1px 1px 2px #666;
   outline: none;
@@ -187,6 +188,11 @@ header h1 {
 #filters li button:active {
   color: #5AD796;
   background: #666;
+}
+
+#filters li button.selected {
+  color: #445E51;
+  //background: #666;
 }
 
 #clear-completed {

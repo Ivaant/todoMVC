@@ -39,18 +39,46 @@ const todos = {
     });
   },
 
-  getNumberOfLeft: function () {
+  getNumberOfActive: function () {
     return this.list.reduce((acc, elem) => {
       if (!elem.completed) acc++;
       return acc;
     }, 0);
   },
 
+  getNumberOfCompleted: function () {
+    return this.list.reduce((acc, elem) => {
+      if (elem.completed) acc++;
+      return acc;
+    }, 0);
+  },
+
   deleteTodo: function (index) {
     this.list.splice(index, 1);
+  },
+
+  deleteCompleted: function () {
+    this.list = this.list.filter(elem => {
+      return elem.completed == false;
+    });
+  },
+  getAllTodos: function () {
+    return this.list;
+  },
+  getActiveTodos: function () {
+    return this.list.filter(elem => {
+      return elem.completed == false;
+    });
+  },
+  getCompletedTodos: function () {
+    return this.list.filter(elem => {
+      return elem.completed == true;
+    });
   }
 };
 
+
+// *******************************************************
 
 
 const handlers = {
@@ -61,17 +89,17 @@ const handlers = {
       todos.addTodo(inputText);
       inputElem.value = "";
     }
-    view.displayTodos();
+    view.displayAllTodos();
   },
   updateTodo: function (newText, position) {
     if (newText != false) {
       todos.updateTodo(newText, position);
     }
-    view.displayTodos();
+    view.displayAllTodos();
   },
   toggleAll: function () {
     todos.toggleAll();
-    view.displayTodos();
+    view.displayAllTodos();
   },
   toggleCompleted: function () {
     const PositionInput = document.querySelector("#toggleTodoPositionInput");
@@ -80,8 +108,14 @@ const handlers = {
       todos.toggleCompleted(position);
       PositionInput.value = null;
     }
-    view.displayTodos();
+    view.displayAllTodos();
   },
+
+  deleteCompleted: function () {
+    todos.deleteCompleted();
+    view.displayAllTodos();
+  },
+
   handleTodo: function (event) {
     if (event.target.className === "del-but") {
       const position = +event.target.parentNode.id;
@@ -97,17 +131,38 @@ const handlers = {
       event.target.edit();
       console.log("display-text focused");
     }
-    view.displayTodos();
+    view.displayAllTodos();
   }
 };
 
+
+// ********************************************************
+
+
 const view = {
-  displayTodos: function () {
+  displayAllTodos: function (event) {
+    let selected = null;
+    if (event !== undefined && event.type === "click") selected = event.target;
+    else selected = document.querySelector("button#all");
+    this._setSelectedButton(selected);
+    this._displayTodos(todos.getAllTodos());
+  },
+  displayActiveTodos: function (event) {
+    const selected = event.target;
+    this._setSelectedButton(selected);
+    this._displayTodos(todos.getActiveTodos());
+  },
+  displayCompletedTodos: function (event) {
+    const selected = event.target;
+    this._setSelectedButton(selected);
+    this._displayTodos(todos.getCompletedTodos());
+  },
+  _displayTodos: function (list) {
     const ulElem = document.querySelector("#display");
     while (ulElem.lastChild) {
       ulElem.removeChild(ulElem.lastChild);
     }
-    todos.list.forEach((elem, index) => {
+    list.forEach((elem, index) => {
       const liElem = document.createElement("li");
       liElem.className = "display-row";
       liElem.id = index;
@@ -157,26 +212,40 @@ const view = {
     closeButElem.className = "del-but";
     return closeButElem;
   },
+  _setSelectedButton: function (selected) {
+    const filterButtons = document.querySelectorAll("#filters li button");
+    filterButtons.forEach(elem => {
+      if (elem === selected) elem.classList.add("selected");
+      else elem.classList.remove("selected");
+    });
+  },
   updateFooter: function () {
     const footerElem = document.querySelector(".footer");
-
-    const todoCountElem = document.querySelector("#todo-count");
-    const numberLeft = todos.getNumberOfLeft();
-    todoCountElem.textContent = "";
-    todoCountElem.textContent = numberLeft + " items left";
-
-    const filtersElem = document.createElement("ul");
-
-
-    const clearCompletedButton = document.createElement("button");
-
-    //footerElem.appendChild(todoCountElem);
+    if (todos.list.length > 0) {
+      footerElem.style.visibility = "visible";
+      const todoCountElem = document.querySelector("#todo-count");
+      const numberLeft = todos.getNumberOfActive();
+      todoCountElem.textContent = "";
+      todoCountElem.textContent = numberLeft + " items left";
+    } else {
+      footerElem.style.visibility = "hidden";
+    }
+    const clearCompletedButElem = document.querySelector("#clear-completed");
+      if (todos.getNumberOfCompleted() > 0)
+        clearCompletedButElem.style.visibility = "visible";
+      else clearCompletedButElem.style.visibility = "hidden";
   }
 };
 
+
+// ******************************************************
 //test
 todos.addTodo("Make hoework");
 todos.addTodo("Learn JS");
 todos.addTodo("Have a rest");
 todos.updateTodo("Make homework properly", 0);
 todos.toggleCompleted(1);
+
+for (let i = 0; i < 10; i++) {
+  todos.addTodo("New task " + i);
+}

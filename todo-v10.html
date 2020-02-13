@@ -12,7 +12,7 @@
   <title>Document</title>
 </head>
 
-<body onload="view.displayTodos()">
+<body onload="view.displayAllTodos(event)">
   <header class="wrapper">
     <h1>Todos</h1>
     <label onclick="handlers.toggleAll()" id="makeAllCompleted" for="inputTodoText"></label>
@@ -23,11 +23,11 @@
   <footer class="footer wrapper">
     <span id="todo-count"></span>
     <ul id="filters">
-      <li><button id="all">All</button></li>
-      <li><button id="active">Active</button></li>
-      <li><button id="completed">Completed</button></li>
+      <li><button class="selected" id="all" onclick="view.displayAllTodos(event)">All</button></li>
+      <li><button id="active" onclick="view.displayActiveTodos(event)">Active</button></li>
+      <li><button id="completed" onclick="view.displayCompletedTodos(event)">Completed</button></li>
     </ul>
-    <button id="clear-completed">Clear completed</button>
+    <button onclick="handlers.deleteCompleted()" id="clear-completed">Clear completed</button>
   </footer>
   <script src="./todo-v10.js"></script>
 </body>
