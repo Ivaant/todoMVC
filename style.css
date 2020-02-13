@@ -3,13 +3,19 @@
   padding: 0;
 }
 
+/* font-family: 'Roboto', sans-serif;
+font-family: 'Montserrat', sans-serif; */
+
 body {
   min-height: 100vh;
-  background: linear-gradient( #cae2c4, #17a082);
+  background: linear-gradient(#cae2c4, #17a082);
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {
+  font-family: 'Montserrat', sans-serif;
   font-size: 3rem;
+  font-weight: black 900;
   text-align: center;
   color: #394F44;
   text-shadow: 0 2px #9FDDBD;
@@ -29,7 +35,6 @@ button {
   padding: 10px 20px;
   border-radius: 6px;
   color: #214F37;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 2rem;
   font-weight: bold;
   background: linear-gradient(#5AD796, #45A372);
@@ -47,27 +52,12 @@ button:active {
   background: #666;
 }
 
- .small {
-  border: none;
-  margin: 5px;
-  padding: 5px 10px;
-  border-radius: 6px;
-  color: #214F37;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 1rem;
-  font-weight: 300;
-  background: linear-gradient(#5AD796, #45A372);
-  box-shadow: 2px 2px 3px #666;
-  outline: none;
- }
-
-input {
+.todo-input {
   border: inset;
   margin: 20px;
   padding: 10px 20px;
   border-radius: 6px;
   color: #214F37;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 2rem;
   font-weight: 500;
   background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
@@ -80,34 +70,75 @@ input[type="number"] {
   padding: 10px;
 }
 
-input:focus {
+.todo-input:focus {
   box-shadow: 5px 5px 5px #666;
 }
 
 #display {
-  display: table;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 10px 20px;
   border-radius: 6px;
-  background: linear-gradient( #cae2c4, 80%,  #17a082);
+  background: linear-gradient(#cae2c4, 80%, #17a082);
   box-shadow: 2px 2px 3px #666;
 }
 
 .display-row {
-  display: table-row;
-  border: inset;
-  margin: 20px;
-  padding: 10px 20px;
+  position: relative;
+  padding: 0 20px;
   border-radius: 6px;
+  list-style: none;
   color: #214F37;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 1rem;
-  font-weight: 500;
-  background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+  border-bottom: 1px solid #ededed;
+  background: linear-gradient(rgb(203, 247, 224), 30%, #9FDDBD);
   box-shadow: 2px 2px 3px #666;
 }
 
-.display-cell {
-  display: table-cell;
-  padding: 10px;
+.toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 40px;
+  width: 40px;
+  margin: auto 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.display-text {
+  word-break: break-word;
+  padding: 15px 15px 15px 60px;
+  display: block;
+  line-height: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: regular 400;
+  font-size: 1.5rem;
+}
+
+.completed .display-text {
+  font-weight: 300;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.del-but {
+  display: none;
+  position: absolute;
+  top: 35%;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 1.5rem;
+  color: #285E42;
+  margin-bottom: 11px;
+  transform: rotate(45deg);
+  background-color: transparent;
+}
+
+.display-row:hover .del-but {
+  display: inline;
+  cursor: pointer;
 }

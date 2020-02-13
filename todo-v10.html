@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:500,900|Roboto:300,300i,400&display=swap&subset=cyrillic-ext"
+    rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
   <title>Document</title>
 </head>
-<body onload="view.displayTodos()">
-<h1>Todo List</h1>
-<div class="container">
-  <button onclick="handlers.toggleAll()">Toggle All</button>
-</div>
-<div class="container add">
-  <input id="inputTodoText" type="text" placeholder="input new task here">
-  <button onclick="handlers.addTodo()">Add Todo</button>
-</div>
-<div class="container update">
-  <input type="number" id="changeTodoPositionInput" placeholder="№">
-  <input type="text" id="changeTodoTextInput" placeholder="input update task here">
-  <button onclick="handlers.updateTodo()">Change Todo</button>
-</div>
-<div class="container delete">
-  <input type="number" id="deleteTodoPositionInput">
-  <button onclick="handlers.deleteTodo()">Delete Todo</button>
-</div>
-<div class="container toggle">
-  <input type="number" id="toggleTodoPositionInput">
-  <button onclick="handlers.toggleCompleted()">Toggle Todo</button>
-</div>
-<ul id="display"></ul>
 
+<body onload="view.displayTodos()">
+  <h1>Todo List</h1>
+  <div class="container">
+    <button onclick="handlers.toggleAll()">Toggle All</button>
+  </div>
+  <div class="container add">
+    <input class="todo-input" id="inputTodoText" type="text" placeholder="input new task here">
+    <button onclick="handlers.addTodo()">Add Todo</button>
+  </div>
+  <div class="container update">
+    <input type="number" id="changeTodoPositionInput" placeholder="№">
+    <input type="text" id="changeTodoTextInput" placeholder="input update task here">
+    <button onclick="handlers.updateTodo()">Change Todo</button>
+  </div>
+  <div class="container">
+    <input type="number" id="toggleTodoPositionInput">
+    <button onclick="handlers.toggleCompleted()">Toggle Todo</button>
+  </div>
+  <ul id="display" onclick="handlers.handleTodo(event)"></ul>
+  <label for="display" contenteditable="true">Editable text</label>
   <script src="./todo-v10.js"></script>
 </body>
+
 </html>
