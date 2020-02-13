@@ -13,25 +13,22 @@
 </head>
 
 <body onload="view.displayTodos()">
-  <h1>Todo List</h1>
-  <div class="container">
+  <header class="wrapper">
+    <h1>Todo List</h1>
     <button onclick="handlers.toggleAll()">Toggle All</button>
-  </div>
-  <div class="container add">
     <input class="todo-input" id="inputTodoText" type="text" placeholder="input new task here">
-    <button onclick="handlers.addTodo()">Add Todo</button>
-  </div>
-  <div class="container update">
-    <input type="number" id="changeTodoPositionInput" placeholder="№">
-    <input type="text" id="changeTodoTextInput" placeholder="input update task here">
-    <button onclick="handlers.updateTodo()">Change Todo</button>
-  </div>
-  <div class="container">
-    <input type="number" id="toggleTodoPositionInput">
-    <button onclick="handlers.toggleCompleted()">Toggle Todo</button>
-  </div>
-  <ul id="display" onclick="handlers.handleTodo(event)"></ul>
-  <label for="display" contenteditable="true">Editable text</label>
+    <button class="big-button" onclick="handlers.addTodo()">Add Todo</button>
+  </header>
+  <ul id="display" class="wrapper" onclick="handlers.handleTodo(event)"></ul>
+  <footer class="footer wrapper">
+    <span id="todo-count"></span>
+    <ul id="filters">
+      <li><button id="all">All</button></li>
+      <li><button id="active">Active</button></li>
+      <li><button id="completed">Completed</button></li>
+    </ul>
+    <button id="clear-completed">Clear completed</button>
+  </footer>
   <script src="./todo-v10.js"></script>
 </body>
 

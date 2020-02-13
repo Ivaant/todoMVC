@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /* font-family: 'Roboto', sans-serif;
@@ -8,28 +9,31 @@ font-family: 'Montserrat', sans-serif; */
 
 body {
   min-height: 100vh;
-  background: linear-gradient(#cae2c4, #17a082);
+  background: linear-gradient(#A0DEBE, #7BAB92, #285E42);
   font-family: 'Roboto', sans-serif;
+  color: #445E51;
 }
 
-h1 {
+.wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px #666;
+}
+
+
+header h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 3rem;
   font-weight: black 900;
   text-align: center;
   color: #394F44;
+  opacity: 0.5;
   text-shadow: 0 2px #9FDDBD;
 }
 
-.container {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
 
-
-button {
+.big-button {
   border: none;
   margin: 20px;
   padding: 10px 20px;
@@ -42,12 +46,12 @@ button {
   outline: none;
 }
 
-button:hover {
+.big-button:hover {
   box-shadow: 5px 5px 5px #666;
   color: #9FDDBD;
 }
 
-button:active {
+.big-button:active {
   color: #5AD796;
   background: #666;
 }
@@ -75,24 +79,27 @@ input[type="number"] {
 }
 
 #display {
-  max-width: 500px;
-  margin: 0 auto;
-  border-radius: 6px;
-  background: linear-gradient(#cae2c4, 80%, #17a082);
-  box-shadow: 2px 2px 3px #666;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  list-style: none;
 }
 
 .display-row {
   position: relative;
   padding: 0 20px;
   border-radius: 6px;
-  list-style: none;
   color: #214F37;
   font-size: 1.4rem;
   line-height: 1.5rem;
   border-bottom: 1px solid #ededed;
   background: linear-gradient(rgb(203, 247, 224), 30%, #9FDDBD);
   box-shadow: 2px 2px 3px #666;
+}
+
+.display-row:hover {
+  box-shadow: 5px 5px 10px #666;
 }
 
 .toggle {
@@ -115,6 +122,7 @@ input[type="number"] {
   font-family: 'Roboto', sans-serif;
   font-weight: regular 400;
   font-size: 1.5rem;
+  outline: none;
 }
 
 .completed .display-text {
@@ -126,7 +134,7 @@ input[type="number"] {
 .del-but {
   display: none;
   position: absolute;
-  top: 35%;
+  top: 40%;
   right: 10px;
   width: 40px;
   height: 40px;
@@ -141,4 +149,65 @@ input[type="number"] {
 .display-row:hover .del-but {
   display: inline;
   cursor: pointer;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+  color: #214F37;
+  background: linear-gradient(rgb(203, 247, 224), 30%, #9FDDBD);
+  box-shadow: 2px 2px 3px #666;
+}
+
+#todo-count {
+  font-size: 0.8rem;
+}
+
+#filters {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+#filters li button {
+  margin: 3px;
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: #445E51;
+  background: linear-gradient(#e1e1e1, #A0DEBE);
+  box-shadow: 1px 1px 2px #666;
+  outline: none;
+  cursor: pointer;
+}
+
+#filters li button:hover {
+  color: #285E42;
+  box-shadow: 3px 3px 3px #666;
+}
+
+#filters li button:active {
+  color: #5AD796;
+  background: #666;
+}
+
+#clear-completed {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #445E51;
+  outline: none;
+  cursor: pointer;
+}
+
+#clear-completed:hover {
+  text-decoration: underline;
 }

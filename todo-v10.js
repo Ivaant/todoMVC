@@ -39,6 +39,13 @@ const todos = {
     });
   },
 
+  getNumberOfLeft: function () {
+    return this.list.reduce((acc, elem) => {
+      if (!elem.completed) acc++;
+      return acc;
+    }, 0);
+  },
+
   deleteTodo: function (index) {
     this.list.splice(index, 1);
   }
@@ -47,7 +54,10 @@ const todos = {
 
 
 const handlers = {
-  addTodo: function () {
+  addTodo: function (event) {
+    // if (event.key === "Enter") {
+    //   console.log("Enter");
+    // }
     const inputElem = document.querySelector("#inputTodoText");
     const inputText = inputElem.value;
     if (inputText) {
@@ -115,7 +125,7 @@ const view = {
         checkBoxElem.removeAttribute("checked");
         liElem.classList.remove("completed");
       }
-      
+
 
       const displayText = elem.todoText;
       const textElem = this.createTextElem(displayText, liElem.id, elem.completed);
@@ -126,6 +136,7 @@ const view = {
       liElem.appendChild(delButElem);
       ulElem.appendChild(liElem);
     });
+    this.updateFooter();
   },
   createTextElem: function (text, parentId, isCompleted) {
     const textElem = document.createElement("p");
@@ -133,12 +144,12 @@ const view = {
     if (!isCompleted) {
       textElem.setAttribute("contenteditable", "true");
     } else textElem.removeAttribute("contenteditable");
-    
+
     textElem.className = "display-text";
-    textElem.onclick = function(event) {
-      event.stopPropagation(); 
+    textElem.onclick = function (event) {
+      event.stopPropagation();
     }
-    textElem.onblur = function(event) {
+    textElem.onblur = function (event) {
       handlers.updateTodo(event.target.textContent, parentId);
     }
     return textElem;
@@ -148,6 +159,21 @@ const view = {
     closeButElem.textContent = "+";
     closeButElem.className = "del-but";
     return closeButElem;
+  },
+  updateFooter: function () {
+    const footerElem = document.querySelector(".footer");
+
+    const todoCountElem = document.querySelector("#todo-count");
+    const numberLeft = todos.getNumberOfLeft();
+    todoCountElem.textContent = "";
+    todoCountElem.textContent = numberLeft + " items left";
+
+    const filtersElem = document.createElement("ul");
+
+
+    const clearCompletedButton = document.createElement("button");
+
+    //footerElem.appendChild(todoCountElem);
   }
 };
 
