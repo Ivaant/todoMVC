@@ -55,11 +55,8 @@ const todos = {
 
 const handlers = {
   addTodo: function (event) {
-    // if (event.key === "Enter") {
-    //   console.log("Enter");
-    // }
-    const inputElem = document.querySelector("#inputTodoText");
-    const inputText = inputElem.value;
+    const inputElem = event.target;
+    const inputText = event.target.value;
     if (inputText) {
       todos.addTodo(inputText);
       inputElem.value = "";

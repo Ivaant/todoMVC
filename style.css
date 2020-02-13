@@ -21,45 +21,40 @@ body {
   box-shadow: 2px 2px 3px #666;
 }
 
+header.wrapper {
+  position: relative;
+  margin-top: 10px;
+  background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
+}
+
 
 header h1 {
+  margin: 0 auto;
+  height: 100px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
-  font-weight: black 900;
+  font-size: 4rem;
+  line-height: 100px;
+  font-weight: 500;
   text-align: center;
   color: #394F44;
   opacity: 0.5;
   text-shadow: 0 2px #9FDDBD;
 }
 
-
-.big-button {
-  border: none;
-  margin: 20px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  color: #214F37;
+#makeAllCompleted::before {
+  content: '❯';
+  position: absolute;
+  bottom: 10px;
+  left: 35px;
   font-size: 2rem;
-  font-weight: bold;
-  background: linear-gradient(#5AD796, #45A372);
-  box-shadow: 2px 2px 3px #666;
-  outline: none;
-}
-
-.big-button:hover {
-  box-shadow: 5px 5px 5px #666;
-  color: #9FDDBD;
-}
-
-.big-button:active {
-  color: #5AD796;
-  background: #666;
+  transform: rotate(90deg);
+  cursor: pointer;
 }
 
 .todo-input {
-  border: inset;
-  margin: 20px;
-  padding: 10px 20px;
+  width: 100%;
+  padding: 10px 20px 10px 80px;
+  border: none;
   border-radius: 6px;
   color: #214F37;
   font-size: 2rem;
@@ -67,11 +62,6 @@ header h1 {
   background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
   box-shadow: 2px 2px 3px #666;
   outline: none;
-}
-
-input[type="number"] {
-  width: 1em;
-  padding: 10px;
 }
 
 .todo-input:focus {

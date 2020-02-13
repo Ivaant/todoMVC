@@ -14,10 +14,10 @@
 
 <body onload="view.displayTodos()">
   <header class="wrapper">
-    <h1>Todo List</h1>
-    <button onclick="handlers.toggleAll()">Toggle All</button>
-    <input class="todo-input" id="inputTodoText" type="text" placeholder="input new task here">
-    <button class="big-button" onclick="handlers.addTodo()">Add Todo</button>
+    <h1>Todos</h1>
+    <label onclick="handlers.toggleAll()" id="makeAllCompleted" for="inputTodoText"></label>
+    <input onchange="handlers.addTodo(event)" class="todo-input" id="inputTodoText" type="text"
+      placeholder="input new task here">
   </header>
   <ul id="display" class="wrapper" onclick="handlers.handleTodo(event)"></ul>
   <footer class="footer wrapper">
