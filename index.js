@@ -5,7 +5,7 @@
 const storage = {
   todoKeysArray: [],
   getTodoKeysArray: function () {
-    const todoKeysArray = localStorage.getItem("todoKeysArray");
+    let todoKeysArray = localStorage.getItem("todoKeysArray");
     if (!todoKeysArray) {
       todoKeysArray = [];
       localStorage.setItem("todoKeysArray", JSON.stringify(todoKeysArray));
@@ -31,11 +31,18 @@ const storage = {
     const key = this.todoKeysArray[index];
     localStorage.setItem(key, JSON.stringify(todoElem));
   },
-  deleteTodoFromStorage: function(index) {
+  deleteTodoFromStorage: function (index) {
     const key = this.todoKeysArray[index];
     localStorage.removeItem(key);
     this.todoKeysArray.splice(index, 1);
     localStorage.setItem("todoKeysArray", JSON.stringify(this.todoKeysArray));
+  },
+  delCompletedFromStorage: function (delIndexes) {
+    this.todoKeysArray.forEach((elem, index) => {
+      if (delIndexes.includes(index)) {
+        this.deleteTodoFromStorage(index);
+      }
+    });
   }
 };
 
@@ -59,7 +66,7 @@ const todos = {
   },
 
   initTodos: function () {
-    list = storage.getTodosFromStorage();
+    this.list = storage.getTodosFromStorage();
   },
   addTodo: function (todoText) {
     const todoElem = {
@@ -118,9 +125,13 @@ const todos = {
   },
 
   deleteCompleted: function () {
+    const delIndexes = this.list.map((elem, index) => {
+      if (elem.completed) return index;
+    });
     this.list = this.list.filter(elem => {
       return elem.completed == false;
     });
+    storage.delCompletedFromStorage(delIndexes);
   },
   getAllTodos: function () {
     return this.list;
@@ -303,11 +314,3 @@ const view = {
 };
 
 window.onload = handlers.loadTodoApp();
-
-// ******************************************************
-//test
-todos.addTodo("Make hoework");
-todos.addTodo("Learn JS");
-todos.addTodo("Make grocery shopping");
-todos.updateTodo("Make homework properly", 0);
-todos.toggleCompleted(1);
