@@ -1,3 +1,51 @@
+//************************************************ */
+//*******************STORAGE********************** */
+//*********************************************** */
+
+const storage = {
+  todoKeysArray: [],
+  getTodoKeysArray: function () {
+    const todoKeysArray = localStorage.getItem("todoKeysArray");
+    if (!todoKeysArray) {
+      todoKeysArray = [];
+      localStorage.setItem("todoKeysArray", JSON.stringify(todoKeysArray));
+    } else {
+      todoKeysArray = JSON.parse(todoKeysArray);
+    }
+    this.todoKeysArray = todoKeysArray;
+    return this.todoKeysArray;
+  },
+  getTodosFromStorage: function () {
+    const todoKeysArray = this.getTodoKeysArray();
+    return todoKeysArray.map(key => {
+      return JSON.parse(localStorage[key]);
+    });
+  },
+  addTodoToStorage: function (todoElem) {
+    const key = "todo_" + new Date().getTime();
+    localStorage.setItem(key, JSON.stringify(todoElem));
+    this.todoKeysArray.push(key);
+    localStorage.setItem("todoKeysArray", JSON.stringify(this.todoKeysArray));
+  },
+  updateTodoToStorage: function (todoElem, index) {
+    const key = this.todoKeysArray[index];
+    localStorage.setItem(key, JSON.stringify(todoElem));
+  },
+  deleteTodoFromStorage: function(index) {
+    const key = this.todoKeysArray[index];
+    localStorage.removeItem(key);
+    this.todoKeysArray.splice(index, 1);
+    localStorage.setItem("todoKeysArray", JSON.stringify(this.todoKeysArray));
+  }
+};
+
+
+
+
+//*************************************************
+//***************MODEL*****************************
+//*************************************************
+
 const todos = {
   list: [],
   displayTodos: function () {
@@ -9,18 +57,28 @@ const todos = {
       }
     } else console.log("Todos is empty");
   },
+
+  initTodos: function () {
+    list = storage.getTodosFromStorage();
+  },
   addTodo: function (todoText) {
-    this.list.push({
+    const todoElem = {
       todoText: todoText,
       completed: false
-    });
+    }
+    this.list.push(todoElem);
+    storage.addTodoToStorage(todoElem);
   },
   updateTodo: function (todoText, index) {
-    this.list[index].todoText = todoText;
+    const todoElem = this.list[index];
+    todoElem.todoText = todoText;
+    this.list[index] = todoElem;
+    storage.updateTodoToStorage(todoElem, index);
   },
 
   toggleCompleted: function (index) {
     this.list[index].completed = !this.list[index].completed;
+    storage.updateTodoToStorage(this.list[index], index);
   },
 
   toggleAll: function () {
@@ -33,9 +91,10 @@ const todos = {
       isAllCompleted = true;
     }
 
-    this.list.forEach(elem => {
+    this.list.forEach((elem, index) => {
       if (isAllCompleted) elem.completed = false;
       else elem.completed = true;
+      storage.updateTodoToStorage(elem, index);
     });
   },
 
@@ -55,6 +114,7 @@ const todos = {
 
   deleteTodo: function (index) {
     this.list.splice(index, 1);
+    storage.deleteTodoFromStorage(index);
   },
 
   deleteCompleted: function () {
@@ -79,9 +139,14 @@ const todos = {
 
 
 // *******************************************************
-
+//***************CONTROLLER**************************** */
+//***************************************************** */
 
 const handlers = {
+  loadTodoApp: function () {
+    todos.initTodos();
+    view.displayAllTodos();
+  },
   addTodo: function (event) {
     const inputElem = event.target;
     const inputText = event.target.value;
@@ -129,7 +194,6 @@ const handlers = {
       }
     } else if (event.target.className === "display-text") {
       event.target.edit();
-      console.log("display-text focused");
     }
     view.displayAllTodos();
   }
@@ -137,7 +201,8 @@ const handlers = {
 
 
 // ********************************************************
-
+//*******************VIEW********************************* */
+//******************************************************* */
 
 const view = {
   displayAllTodos: function (event) {
@@ -207,10 +272,10 @@ const view = {
     return textElem;
   },
   createDelButton: function () {
-    const closeButElem = document.createElement("span");
-    closeButElem.textContent = "+";
-    closeButElem.className = "del-but";
-    return closeButElem;
+    const delButElem = document.createElement("span");
+    delButElem.textContent = "+";
+    delButElem.className = "del-but";
+    return delButElem;
   },
   _setSelectedButton: function (selected) {
     const filterButtons = document.querySelectorAll("#filters li button");
@@ -231,12 +296,13 @@ const view = {
       footerElem.style.visibility = "hidden";
     }
     const clearCompletedButElem = document.querySelector("#clear-completed");
-      if (todos.getNumberOfCompleted() > 0)
-        clearCompletedButElem.style.visibility = "visible";
-      else clearCompletedButElem.style.visibility = "hidden";
+    if (todos.getNumberOfCompleted() > 0)
+      clearCompletedButElem.style.visibility = "visible";
+    else clearCompletedButElem.style.visibility = "hidden";
   }
 };
 
+window.onload = handlers.loadTodoApp();
 
 // ******************************************************
 //test
