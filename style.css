@@ -9,9 +9,14 @@ font-family: 'Montserrat', sans-serif; */
 
 body {
   min-height: calc(100vh - 50px);
-  background: linear-gradient(#A0DEBE, #7BAB92, #285E42);
+  /* background: linear-gradient(#A0DEBE, #7BAB92, #285E42), */
+  background-image: url("./images/background-web.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
-  color: #445E51;
+  color: #324D2F;
 }
 
 .wrapper {
@@ -24,7 +29,7 @@ body {
 header.wrapper {
   position: relative;
   margin-top: 50px;
-  background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
+  background: linear-gradient(#97E58E, #286621);
 }
 
 
@@ -36,7 +41,7 @@ header h1 {
   line-height: 100px;
   font-weight: 500;
   text-align: center;
-  color: #394F44;
+  color: #324D2F;
   opacity: 0.5;
   text-shadow: 0 2px #9FDDBD;
 }
@@ -56,10 +61,10 @@ header h1 {
   padding: 10px 20px 10px 80px;
   border: none;
   border-radius: 6px;
-  color: #214F37;
+  color: #324D2F;
   font-size: 2rem;
   font-weight: 500;
-  background: linear-gradient(rgb(203, 247, 224), #9FDDBD);
+  background: linear-gradient(#97E58E, rgb(107, 185, 98));
   box-shadow: 2px 2px 3px #666;
   outline: none;
 }
@@ -80,11 +85,11 @@ header h1 {
   position: relative;
   padding: 0 20px;
   border-radius: 6px;
-  color: #214F37;
+  color: #324D2F;
   font-size: 1.4rem;
   line-height: 1.5rem;
-  border-bottom: 1px solid #ededed;
-  background: linear-gradient(rgb(203, 247, 224), 30%, #9FDDBD);
+  border-bottom: 1px solid #276620;
+  background: linear-gradient(#97E58E, rgb(107, 185, 98));
   box-shadow: 2px 2px 3px #666;
 }
 
@@ -112,7 +117,7 @@ header h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: regular 400;
   font-size: 1.5rem;
-  color: #445E51;
+  color: #324D2F;
   outline: none;
 }
 
@@ -146,13 +151,13 @@ header h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid #276620
   border-radius: 6px;
   padding: 10px 20px;
   font-size: 1.4rem;
   line-height: 1.5rem;
   color: #214F37;
-  background: linear-gradient(rgb(203, 247, 224), 30%, #9FDDBD);
+  background: linear-gradient(#97E58E, rgb(107, 185, 98));
   box-shadow: 2px 2px 3px #666;
 }
 
@@ -173,8 +178,8 @@ header h1 {
   border: 1px solid transparent;
   border-radius: 3px;
   font-size: 0.8rem;
-  color: #5AD796;
-  background: linear-gradient(#e1e1e1, #A0DEBE);
+  color: #63995D;
+  background: linear-gradient(#e1e1e1, #95E58C);
   box-shadow: 1px 1px 2px #666;
   outline: none;
   cursor: pointer;
@@ -199,7 +204,7 @@ header h1 {
   background: none;
   border: none;
   padding: 0;
-  color: #445E51;
+  color: #324D2F;
   outline: none;
   cursor: pointer;
 }
@@ -212,14 +217,16 @@ header h1 {
   max-width: 500px;
   margin: 100px auto 10px auto;
   text-align: center;
+  text-shadow: 1px 1px 1px #286621;
   font-size: 0.8rem;
   line-height: 1.5rem;
-  color: #a1a1a1;
+  color: rgb(207, 231, 204);
 }
 
 #after-footer a {
-  color: #a1a1a1;
+  color: rgb(207, 231, 204);
   text-decoration: none;
+  text-shadow: 1px 1px 1px #286621;
 }
 
 #after-footer a:hover {
