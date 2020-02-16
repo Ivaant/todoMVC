@@ -313,4 +313,4 @@ const view = {
   }
 };
 
-window.onload = handlers.loadTodoApp();
+window.onload = handlers.loadTodoApp;
